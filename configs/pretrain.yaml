@@ -1,0 +1,34 @@
+train_file: [
+             './data/PMC/PMC_OA/train.jsonl',
+             './data/PMC/PMC_OA/test.jsonl',
+             './data/PMC/PMC_OA/valid.jsonl',
+             './data/ROCO/roco_train.json',
+             './data/ROCO/roco_val.json',
+             './data/ROCO/roco_test.json',
+             './data/MedICaT/release/s2_full_figures_oa_nonroco_combined_medical_top4_public.jsonl'
+]
+laion_path: ''
+
+# size of vit model; base or large
+vit: 'base'
+vit_grad_ckpt: False
+vit_ckpt_layer: 0
+
+image_size: 224
+batch_size: 32
+
+queue_size: 65536
+alpha: 0.3
+
+# optimizer
+weight_decay: 0.05
+init_lr: 1e-4
+min_lr: 1e-5
+warmup_lr: 1e-5
+lr_decay_rate: 0.5
+max_epoch: 30
+warmup_steps: 3000
+
+
+
+
