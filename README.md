@@ -19,7 +19,7 @@ For `MIMIC-CXR` download from [here](https://physionet.org/content/mimic-cxr-jpg
 
 For `Bladder Pathology` download from [here](https://figshare.com/projects/nmi-wsi-diagnosis/61973).
 
-### Pretrain Datasets
+## Pretrain Datasets
 
 we used the ROCO、PMC-OA and 
 
@@ -29,7 +29,7 @@ For `PMC-OA` download from [here](https://huggingface.co/datasets/axiong/pmc_oa)
 
 For `MedICaT` download from [here](https://github.com/allenai/medicat).
 
-### Pretrain Weights
+## Pretrain Weights
 
 - Waitting
   
