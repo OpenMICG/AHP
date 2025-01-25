@@ -94,7 +94,7 @@ class DWConv(nn.Module):
         x = torch.cat([x_cls, x1], dim=1)
         return x
 
-lass Extractor(nn.Module):
+class Extractor(nn.Module):
     def __init__(self, dim, num_heads=6, n_points=4, n_levels=1, deform_ratio=1.0,
                  with_cffn=True, cffn_ratio=0.25, drop=0., drop_path=0.,
                  norm_layer=partial(nn.LayerNorm, eps=1e-6), with_cp=False):
