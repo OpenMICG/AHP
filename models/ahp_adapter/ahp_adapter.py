@@ -90,20 +90,17 @@ class AHPAdapter(TIMMVisionTransformer):
         if isinstance(m, MSDeformAttn):
             m._reset_parameters()
 
-    def _add_level_embed(self,c3):
-        # c1 = c1 + self.level_embed[0]
-        # c2 = c2 + self.level_embed[1]
-        c3 = c3 + self.level_embed[0]
-        # c4 = c4 + self.level_embed[3]
-        return c3.clone()
+    def _add_level_embed(self,c):
+        c = c + self.level_embed[0]
+        return c.clone()
 
 
     def forward(self, x):
         deform_inputs1, deform_inputs2 = deform_inputs(x)
 
         # SPM forward
-        c3 = self.spm(x)
-        c3 = self._add_level_embed(c3)
+        c = self.spm(x)
+        c = self._add_level_embed(c)
         # c = torch.cat([c2, c3, c4], dim=1)
 
         # Patch Embedding forward
@@ -125,11 +122,11 @@ class AHPAdapter(TIMMVisionTransformer):
             indexes = self.interaction_indexes[i]
             if i == 3:
                 register_blk=2
-            x, c3 = layer(x, c3, self.blocks[indexes[0]:indexes[-1] + 1],
+            x, c = layer(x, c, self.blocks[indexes[0]:indexes[-1] + 1],
                          deform_inputs1, deform_inputs2, H, W, register_blk=register_blk)
 
         if self.add_vit_feature:
-            x = x + c3
+            x = x + c
         # Final Norm
         fx = F.normalize(x, dim=-1)
         return fx
