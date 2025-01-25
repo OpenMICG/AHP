@@ -4,32 +4,13 @@ from torchvision import transforms
 from torchvision.transforms.functional import InterpolationMode
 from PIL import Image
 
-
-from data.coco_karpathy_dataset import coco_karpathy_train, coco_karpathy_caption_eval, coco_karpathy_retrieval_eval
 from data.iu_xray_dataset import iu_xray_train, iu_xray_val
 from data.mimic_dataset import mimic_train, mimic_val
 from data.pretrain_dataset import pretrain_dataset
-from data.vqa_dataset import vqa_dataset
 from transform.randaugment import RandomAugment
 
 
 def create_dataset(dataset, config, min_scale=0.5, max_words=60):
-    normalize = transforms.Normalize((0.48145466, 0.4578275, 0.40821073), (0.26862954, 0.26130258, 0.27577711))
-
-    # transform_train = transforms.Compose([
-    #     transforms.RandomResizedCrop(config['image_size'], scale=(min_scale, 1.0),
-    #                                  interpolation=InterpolationMode.BICUBIC),
-    #     transforms.RandomHorizontalFlip(),
-    #     RandomAugment(2, 5, isPIL=True, augs=['Identity', 'AutoContrast', 'Brightness', 'Sharpness', 'Equalize',
-    #                                           'ShearX', 'ShearY', 'TranslateX', 'TranslateY', 'Rotate']),
-    #     transforms.ToTensor(),
-    #     normalize,
-    # ])
-    # transform_test = transforms.Compose([
-    #     transforms.Resize((config['image_size'], config['image_size']), interpolation=InterpolationMode.BICUBIC),
-    #     transforms.ToTensor(),
-    #     normalize,
-    # ])
 
     transform_train = transforms.Compose([
         transforms.Resize(256),
@@ -43,21 +24,6 @@ def create_dataset(dataset, config, min_scale=0.5, max_words=60):
         transforms.ToTensor(),
         transforms.Normalize((0.485, 0.456, 0.406),
                              (0.229, 0.224, 0.225))])
-
-    # vqa
-    # transform_train = transforms.Compose([
-    #     transforms.RandomResizedCrop(config['image_res'], scale=(0.5, 1.0), interpolation=Image.BICUBIC),
-    #     transforms.RandomHorizontalFlip(),
-    #     RandomAugment(2, 7, isPIL=True, augs=['Identity', 'AutoContrast', 'Equalize', 'Brightness', 'Sharpness',
-    #                                           'ShearX', 'ShearY', 'TranslateX', 'TranslateY', 'Rotate']),
-    #     transforms.ToTensor(),
-    #     normalize,
-    # ])
-    # transform_test = transforms.Compose([
-    #     transforms.Resize((config['image_res'], config['image_res']), interpolation=Image.BICUBIC),
-    #     transforms.ToTensor(),
-    #     normalize,
-    # ])
 
     if dataset == 'pretrain':
         dataset = pretrain_dataset(config['train_file'], config['laion_path'], transform_train)
