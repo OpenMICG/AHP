@@ -149,11 +149,8 @@ def main(args, config):
 
     #### Model ####
     print("Creating model")
-    model = ahp_decoder(args=args, pretrained=config['pretrained'], image_size=config['image_size'],
-                         prompt=config['prompt'], datasets=config["datasets"], tokenizer=tokenizer)
+    model = ahp_decoder(args=args, pretrained=config['pretrained'], prompt=config['prompt'], datasets=config["datasets"], tokenizer=tokenizer)
     model = model.to(device)
-    total_params = count_parameters(model)
-    print(f"Total number of parameters: {total_params}")
 
     model_without_ddp = model
     if args.distributed:
