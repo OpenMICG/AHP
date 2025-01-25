@@ -36,7 +36,7 @@ class AHP_Decoder(nn.Module):
                  embed_dim=256,
                  datasets='caption_iu_xray',
                  tokenizer=None,
-                 pretrained=pretrained,
+                 pretrained=False,
                  ):
         """
         Args:
@@ -53,7 +53,7 @@ class AHP_Decoder(nn.Module):
 
         self.visual_encoder_m = AHPAdapter(embed_dim=768, patch_size=16, depth=12, num_heads=12, conv_inplane=64,
                                          n_points=4, deform_num_heads=12, cffn_ratio=0.25, deform_ratio=0.5,
-                                         interaction_indexes=[[0, 2], [3, 5], [6, 8], [9, 11]] pretrained,pretrained)
+                                         interaction_indexes=[[0, 2], [3, 5], [6, 8], [9, 11]] ,pretrained=pretrained)
 
 
         self.tokenizer = tokenizer
