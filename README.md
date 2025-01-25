@@ -29,10 +29,11 @@ For `PMC-OA` download from [here](https://huggingface.co/datasets/axiong/pmc_oa)
 
 For `MedICaT` download from [here](https://github.com/allenai/medicat).
 
-## Pretrain Weights
+## Clinical Metrics and Lexical Metrics
 
-- Waitting
-  
+We evaluate RadCliQ-v1, SembScore, RadGraph, and BERTScore using [this](https://github.com/rajpurkarlab/CXR-Report-Metric/tree/main).
+
+We evaluate RaTEScore using [this](https://github.com/MAGIC-AI4Med/RaTEScore).
 
 ## Running
 
